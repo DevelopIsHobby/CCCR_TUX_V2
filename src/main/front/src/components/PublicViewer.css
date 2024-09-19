@@ -1,0 +1,24 @@
+.Viewer > section {
+  margin-bottom: 20px;
+}
+.Viewer > section > h4 {
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.Viewer .img_section {
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+.Viewer > section > input {
+  background-color: rgb(146, 208, 245);
+  text-align: right;
+  border: none;
+  border-radius: 5px;
+  font-size: 20px;
+}
+.Viewer .date_section {
+  margin-top: 60px;
+  margin-bottom: 20px;
+}

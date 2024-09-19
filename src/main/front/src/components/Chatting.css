@@ -1,0 +1,59 @@
+/* Chatting.css */
+
+.ChatBox {
+  display: flex;
+  flex-direction: column;
+  height: 400px; /* 원하는 높이로 조정 */
+  width: 100%; /* 원하는 너비로 조정 */
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  background-color: #f9f9f9;
+}
+
+.ChatMessages {
+  flex: 1;
+  padding: 10px;
+  overflow-y: auto; /* 스크롤 가능하게 */
+  background-color: #fff;
+}
+
+.ChatMessage {
+  display: block; /* 메시지가 블록 형태로 나타나도록 설정 */
+  margin-bottom: 10px;
+  padding: 8px;
+  border-radius: 5px;
+  border-bottom: 1px solid #e0e0e0;
+  word-wrap: break-word; /* 긴 단어가 줄바꿈되도록 설정 */
+  white-space: pre-wrap; /* 줄바꿈과 공백을 유지 */
+}
+
+.ChatInputSection {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  border-top: 1px solid #e0e0e0;
+  background-color: #fff; /* 입력 영역 배경 색상 */
+}
+
+.ChatInputSection input {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #e0e0e0;
+  border-radius: 5px;
+  margin-right: 10px;
+}
+
+.ChatInputSection button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+}
+
+.ChatInputSection button:hover {
+  background-color: #0056b3;
+}

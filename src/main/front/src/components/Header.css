@@ -1,0 +1,85 @@
+.Header {
+  display: flex;
+  align-items: center;
+  padding: 20px 0px;
+  border-bottom: 1px solid rgb(246, 246, 246);
+}
+
+.Header > div {
+  display: flex;
+}
+
+.Header .header_center {
+  width: 50%;
+  font-size: 25px;
+  justify-content: center;
+}
+
+.Header .header_left {
+  width: 25%;
+  justify-content: flex-start;
+}
+
+.Header .header_right {
+  width: 25%;
+  justify-content: flex-end;
+}
+
+.menu .index {
+  display: flex;
+  gap: 5px;
+  justify-content: left;
+}
+.menu .sensor {
+  margin-top: 10px;
+  display: flex;
+}
+.menu .sensor > button {
+  flex: 1;
+}
+.myPage-menu {
+  list-style-type: none;
+  margin-top: 5px;
+  height: 80px;
+  width: 100%;
+  background-color: #30526e;
+  display: flex;
+  justify-content: right;
+  border-radius: 5px;
+}
+.myPage-menu > li {
+  color: lightgray;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+
+}
+
+#logo > span {
+  margin-right: 10px;
+}
+#logo > img {
+  height: 60px;
+  border-radius: 50%;
+  margin-right: 5px;
+}
+.myPage-menu > .myPage-menu-li > a {
+  color: lightgray;
+  margin: auto;
+  padding: 10px;
+  font-size: 20px;
+  align-items: center;
+  cursor: pointer;
+}
+
+.myPage-menu > .myPage-menu-li > a:hover {
+  color: white;
+  border-bottom: 3px solid #586168;
+}
+#logo {
+  color: white;
+  font-size: 18px;
+  margin-right: auto;
+  display: flex;
+}

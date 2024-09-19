@@ -1,0 +1,171 @@
+/* 공통 스타일 */
+:root {
+    --primary-color: #007bff;
+    --hover-color: #0056b3;
+    --border-color: #ddd;
+    --text-color: #333;
+    --padding: 10px;
+    --transition-speed: 0.3s;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* 컨테이너 스타일 */
+.container {
+    max-width: 600px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+}
+
+/* 제목 스타일 */
+h3 {
+    margin-bottom: 20px;
+    font-size: 24px;
+    font-weight: bold;
+    color: var(--text-color);
+    text-align: center;
+}
+
+/* 로그아웃 버튼 스타일 */
+.logout-btn {
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 6px 12px;
+    margin-bottom: 10px;
+    text-decoration: none;
+    font-size: 14px;
+    transition: background-color var(--transition-speed);
+}
+
+.logout-btn:hover {
+    background-color: var(--hover-color);
+}
+
+/* 입력 그룹 스타일 */
+.input-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    justify-content: space-between;
+}
+
+.input-group-prepend {
+    border-right: 1px solid var(--border-color);
+}
+
+input-group-text {
+    font-weight: 500;
+    color: #666;
+    background-color: #e9ecef;
+    border-right: 1px solid #ddd;
+    padding: 13px 15px;
+    border-radius: 8px;
+}
+
+.input-group-prepend span {
+    font-weight: bold;
+    color: var(--text-color);
+}
+
+.form-control {
+    flex: 1;
+    padding: var(--padding);
+    border: none;
+    border-radius: 0;
+    font-size: 14px;
+    outline: none;
+    width: 60%
+}
+
+.form-control:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+}
+
+/* 버튼 스타일 */
+.button-primary {
+    background-color: var(--primary-color);
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 8px 16px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color var(--transition-speed);
+}
+
+.button-primary:hover {
+    background-color: var(--hover-color);
+}
+
+.btn-primary:hover {
+    background-color: rgb(70,161,70);
+}
+
+/* 리스트 스타일 */
+.list-group {
+    list-style: none;
+    padding: 0;
+    max-height: 400px;
+    overflow-y: auto;
+    margin-top: 10px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+}
+
+/* 리스트 아이템 스타일 */
+.list-group-item {
+    padding: 10px;
+    border-bottom: 1px solid var(--border-color);
+    cursor: pointer;
+    transition: background-color var(--transition-speed);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.list-group-item:hover {
+    background-color: #f0f0f0;
+}
+
+.list-group-item:last-child {
+    border-bottom: none;
+}
+
+.badge {
+    display: inline-block;
+    padding: 0.25em 0.6em;
+    font-size: 75%;
+    font-weight: 700;
+    color: #fff;
+    background-color: #17a2b8; /* 기본 색상 */
+    border-radius: 10rem; /* pill 형태 */
+    line-height: 1;
+    vertical-align: baseline;
+}
+
+.badge-info {
+    background-color: #17a2b8; /* 정보 표시를 위한 색상 */
+}
+
+.badge-pill {
+    border-radius: 50px; /* pill 형태의 배지 */
+}
+
+.btn-group {
+    margin-left: auto;
+    display: flex;
+    gap: 5px;
+}
+.btn-danger {
+    margin-left: 5px;
+}

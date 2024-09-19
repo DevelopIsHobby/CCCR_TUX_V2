@@ -1,0 +1,61 @@
+/* 전체 공지사항 아이템 컨테이너 */
+.PublicItem {
+  display: flex;
+  gap: 15px;
+  justify-content: space-between;
+  align-items: center; /* 세로 가운데 정렬 */
+  padding: 15px;
+  margin-bottom: 15px;
+  border-radius: 8px; /* 모서리를 둥글게 */
+  border: 1px solid rgb(236, 236, 236);
+  background-color: #ffffff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* 가벼운 그림자 효과 */
+  transition: transform 0.2s ease, box-shadow 0.2s ease; /* 마우스 오버 효과를 위한 트랜지션 */
+}
+
+.PublicItem:hover {
+  transform: translateY(-2px); /* 마우스 오버 시 약간의 떠오름 효과 */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* 그림자 강화 */
+}
+
+/* 정보 섹션 */
+.info_section {
+  flex: 1;
+  cursor: pointer;
+}
+
+/* 헤더 섹션 */
+.header {
+  display: flex;
+  justify-content: space-between; /* 왼쪽의 라벨과 오른쪽의 날짜를 양쪽 끝에 배치 */
+  align-items: center; /* 세로 가운데 정렬 */
+  margin-bottom: 8px; /* 제목과 내용 사이의 여백 */
+}
+
+.label {
+  font-size: 22px;
+  font-weight: bold;
+  color: #007bff; /* 파란색 라벨 */
+}
+
+.label_title {
+  font-size: 22px;
+  font-weight: bold;
+  color: black;
+}
+
+.created_date {
+  font-size: 16px;
+  color: #888; /* 작은 회색 날짜 */
+}
+
+.info_section .content {
+  font-size: 16px;
+  line-height: 1.5;
+  color: #555; /* 다소 어두운 색상 */
+}
+
+/* 버튼 섹션 */
+.button_section {
+  min-width: 100px;
+}

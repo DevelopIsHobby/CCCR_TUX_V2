@@ -1,0 +1,79 @@
+/* .Button 기본 스타일 */
+.Button {
+  background-color: rgb(236, 236, 236);
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 20px;
+  white-space: nowrap;
+  transition: background-color var(--transition-speed), box-shadow var(--transition-speed);
+}
+
+/* .Button hover 상태 */
+.Button:hover {
+  background-color: rgb(220, 220, 220); /* 색상을 어둡게 조정 */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* 그림자 효과 추가 */
+}
+.Button_POSITIVE {
+  background-color: rgb(100, 201, 100);
+  color: white;
+}
+
+.Button_POSITIVE:hover {
+  background-color: rgb(70,161,70);
+}
+
+.Button_NEGATIVE {
+  background-color: rgb(253, 86, 95);
+  color: white;
+}
+.Button_NEGATIVE:hover {
+  background-color: rgb(200, 50, 55); /* 색상을 어둡게 조정 */
+}
+.Button_INDEX {
+  background-color: #00bfff;
+  color: black;
+}
+.Button_INDEX:hover {
+  background-color: rgb(220, 65, 70); /* 색상을 어둡게 조정 */
+}
+.Button_SELECTED {
+  background-color: #00bfff;
+  font-weight: bold;
+  color: #800000;
+}
+.Button_SELECTED:hover {
+  background-color: #00a2e3; /* 색상을 어둡게 조정 */
+  color: #600000; /* 텍스트 색상을 어두운 색으로 조정 */
+}
+.Button_SENSOR {
+  background-color: #b0c4de;
+  font-size: 24px;
+}
+/* .Button_SENSOR hover 상태 - hover 효과 없음 */
+.Button_SENSOR:hover {
+  background-color: #b0c4de; /* 기본 배경색 유지 */
+  box-shadow: none; /* 그림자 효과 없음 */
+  /* 추가적인 hover 효과를 방지하기 위해서 아무 것도 정의하지 않음 */
+}
+.Button_NAME {
+  background-color: #ff6347;
+  color: white;
+}
+
+.Button_ENTER {
+  background-color: rgb(50, 150, 50);
+  color: white;
+}
+.Button_ENTER:hover {
+  background-color: rgb(30, 120, 30); /* 더 어두운 초록색 */
+}
+
+.Button_DELETE {
+  background-color: #6c757d;
+  color: #ffffff;
+}
+.Button_DELETE:hover {
+  background-color: #5a6268; /* 호버 시 배경색: 어두운 회색 */
+}
