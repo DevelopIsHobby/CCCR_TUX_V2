@@ -2,7 +2,7 @@ import "./PublicItem.css";
 import Button from "./Buttons";
 import { useNavigate } from "react-router-dom";
 
-const PublicItem = ({ id, createdDate, title, content }) => {
+const PublicItem = ({ id, createdDate, title, content, email }) => {
   const nav = useNavigate();
 
   return (
@@ -19,7 +19,7 @@ const PublicItem = ({ id, createdDate, title, content }) => {
         <div className="content">{content}</div>
       </div>
       <div
-        onClick={() => nav(`/publicDetail/${id}`)}
+        onClick={() => nav(`/publicDetail/${id}`, {state: {email}})}
         className="button_section"
       >
         <Button text={"자세히 보기"} />

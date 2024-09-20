@@ -9,6 +9,6 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 
 public interface PublicRepository extends JpaRepository<Public, Long> {
-    @Query("SELECT f FROM Public f WHERE f.writer like 'admin' order by f.pno desc")
+    @Query("SELECT f FROM Public f WHERE f.writer like 'admin@com.chattest' order by f.pno desc")
     List<Public> findByName();
 }

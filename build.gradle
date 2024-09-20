@@ -7,12 +7,15 @@ plugins {
 group = 'com'
 version = '0.0.1-SNAPSHOT'
 
+bootJar {
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+}
+
 java {
     toolchain {
         languageVersion = JavaLanguageVersion.of(17)
     }
 }
-
 configurations {
     compileOnly {
         extendsFrom annotationProcessor

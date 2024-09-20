@@ -3,14 +3,17 @@ import Button from "./Buttons";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { getStringedDate } from "../util/getStringedDate";
+import { useLocation } from "react-router-dom";
 
 const PublicNew = ({ initData, onSubmit }) => {
   const nav = useNavigate();
+  const location = useLocation();
+  const email = location.state?.email;
   const [input, setInput] = useState({
     createdDate: new Date(),
     title: "",
     content: "",
-    writer: "admin",
+    writer: email,
   });
 
   useEffect(() => {

@@ -23,7 +23,7 @@ const PublicList = ({ data }) => {
     const checkAdmin = () => {
         console.log(email);
         if(email === "admin@com.chattest") {
-            nav("/publicNew");
+            nav("/publicNew", {state: {email}});
         } else {
             alert("공지사항 생성 권한이 없습니다.");
         }
@@ -33,10 +33,10 @@ const PublicList = ({ data }) => {
     <div className="PublicList">
       <div className="list_wrapper">
           <div className="button">
-              <Button type={"POSITIVE"} onClick={checkAdmin} text={"공지사항 생성하기"} />
+              <Button type={"POSITIVE"} onClick={checkAdmin}  text={"공지사항 생성하기"} />
           </div>
         {data.map((item) => (
-          <PublicItem key={item.id} {...item} />
+          <PublicItem key={item.id} {...item} email={email} />
         ))}
       </div>
     </div>
