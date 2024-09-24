@@ -12,8 +12,11 @@ const Header = ({ title, leftChild, rightChild }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [profileImageUrl, setProfileImageUrl] = useState("");
   const [name, setName] = useState('');
+    const [sensorData, setSensorData] = useState(null);
+    const [sensorDataVisible, setSensorDataVisible] = useState(false); // 센서 데이터 표시 여부 상태 추가
 
-  useEffect(() => {
+
+    useEffect(() => {
     nav(selectedPage);
   }, [selectedPage, nav]);
 
@@ -65,6 +68,23 @@ const Header = ({ title, leftChild, rightChild }) => {
     nav("/myPage");
   }
 
+    const fetchSensorData = () => {
+        if (sensorDataVisible) {
+            // 센서 데이터가 보이는 경우, 데이터를 숨김
+            setSensorData(null);
+        } else {
+            // 센서 데이터가 보이지 않는 경우, API 호출
+            axios.get("/condition/data") // 센서 데이터 API 호출
+                .then(response => {
+                    setSensorData(response.data); // 받아온 데이터를 상태에 저장
+                })
+                .catch(error => {
+                    console.error("Error fetching sensor data", error);
+                });
+        }
+        setSensorDataVisible(!sensorDataVisible); // 상태 토글
+    };
+
   return (
     <>
       <header className="Header">
@@ -94,7 +114,7 @@ const Header = ({ title, leftChild, rightChild }) => {
           />
         </div>
         <div className="sensor">
-          <Button text={"센서데이터"} type={"SENSOR"}/>
+          <Button text={"교육장 환경 확인"} type={"SENSOR"} onClick={fetchSensorData}/>
         </div>
         <div className="myPage">
           <ul className="myPage-menu">
@@ -121,6 +141,18 @@ const Header = ({ title, leftChild, rightChild }) => {
           </ul>
         </div>
       </div>
+        {/* 센서 데이터 표시 */}
+        {sensorData && (
+            <div className="sensor-data">
+                <h3>현재 교육장 환경</h3>
+                <p>온도: {sensorData.temp} °C</p>
+                <p>습도: {sensorData.humidity} %</p>
+                <p>미세먼지(10um 이하): {sensorData.miniDust} (0.1uL당 입자 수)</p>
+                <p>초미세먼지(2.5um 이하): {sensorData.superMiniDust} (0.1uL당 입자 수)/</p>
+                <p>CO2: {sensorData.co2} ppm</p>
+                <p>시간: {sensorData.time}</p>
+            </div>
+        )}
     </>
   );
 };

@@ -11,7 +11,7 @@ public class ConditionDTO {
     private String time;
     private Float temp;
     private Float humidity;
-    private Float mini_dust;
-    private Float super_mini_dust;
+    private Float miniDust;
+    private Float superMiniDust;
     private Float co2;
 }
