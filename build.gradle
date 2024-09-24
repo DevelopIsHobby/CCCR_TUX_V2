@@ -47,7 +47,8 @@ dependencies {
     implementation 'javax.xml.bind:jaxb-api:2.3.1'
     implementation 'org.glassfish.jaxb:jaxb-runtime:2.3.1'
     implementation 'org.json:json:20210307'
-    implementation files('/home/minseok/Documents/최종 프로젝트/chattest/machbase/lib/machbase.jar')
+    implementation 'com.machbase:machjdbc:8.0.2'
+    runtimeOnly 'com.machbase:machjdbc:8.0.2'
 }
 
 tasks.named('test') {
