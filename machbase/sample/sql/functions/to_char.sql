@@ -1,0 +1,12 @@
+drop table sqltest;
+create table sqltest (id1 short, id2 integer, id3 long, id4 float, id5 double, id6 ipv4, id7 ipv6, id8 varchar(128));
+insert into sqltest values(200, 19234, 1234123412, 3.14, 7.8338, '192.168.0.1', '::127.0.0.1', 'machbase varchar');
+select * from sqltest;
+select '[ ' || to_char(id1) || ' ]' from sqltest;
+select '[ ' || to_char(id2) || ' ]' from sqltest;
+select '[ ' || to_char(id3) || ' ]' from sqltest;
+select '[ ' || to_char(id4) || ' ]' from sqltest;
+select '[ ' || to_char(id5) || ' ]' from sqltest;
+select '[ ' || to_char(id6) || ' ]' from sqltest;
+select '[ ' || to_char(id7) || ' ]' from sqltest;
+select '[ ' || to_char(id8) || ' ]' from sqltest;

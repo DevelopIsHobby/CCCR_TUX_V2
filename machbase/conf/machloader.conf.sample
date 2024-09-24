@@ -1,0 +1,14 @@
+#################################################################################
+# Copyright of this product 2013-2023
+# MACHBASE Corporation (or Inc.) or its subsidiaries.
+# All Rights reserved.
+#################################################################################
+
+SERVER = 127.0.0.1
+PORT_NO = 5656
+
+USER = SYS
+PASSWORD = MANAGER
+
+FORMAT = csv
+DATEFORMAT = "YYYY-MM-DD HH24:MI:SS mmm:uuu:nnn"

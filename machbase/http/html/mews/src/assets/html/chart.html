@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<body>
+    <div id="chart"></div>
+
+<script>
+    const g = { // global variables
+        chartOptions: {
+            chart: {
+                type: 'line',
+                height: 400
+            },
+            series: [],
+            dataLabels: {
+                enabled: false,
+            },
+            legend: {
+                itemMargin: {
+                    vertical: 10
+                },
+            },
+            tooltip: {
+                x: {
+                    show: true,
+                    format: 'yyyy-MM-dd HH:mm:ss.fff',
+                },
+            },
+            xaxis: {
+                type: 'datetime',
+                categories: [],
+                labels: {
+                    show: true,
+                    formatter: timestamp => moment(timestamp).format('YYYY-MM-DD HH:mm:ss.SSS')
+                },
+                tooltip: {
+                    enabled: false,
+                }
+            },
+        },
+        tagCount: 5,
+        tableName: 'tag',
+        url: 'http://192.168.0.32:5998/machbase',
+        host: '192.168.0.32:5998',
+        id: 'user',
+        pw: 'password',
+        sampleData: {
+            name: 'tag',
+            date_format: 'YYYY-MM-DD HH24:MI:SS mmm:uuu:nnn',
+            values: [
+                ["s0", "2020-07-31 11:31:19 719:000:000", 940],
+                ["s1", "2020-07-31 11:31:19 719:000:000", 840],
+                ["s2", "2020-07-31 11:31:19 719:000:000", 357],
+                ["s3", "2020-07-31 11:31:19 719:000:000", 588],
+                ["s4", "2020-07-31 11:31:19 719:000:000", 218],
+            ]
+        },
+        appendData: {},
+        selectData: {},
+        transformDatetime: function(datetime) { // datetime nano to milli
+            if (datetime.length === 31) {
+                const newDatetime = `${datetime.slice(0, -12)}.${datetime.slice(-11, -8)}`;
+
+                return moment(newDatetime).valueOf();
+            }
+        }
+    };
+
+    const handleData = function() {
+        const sIp = g.host.split(':')[0];
+        const sKey = "Basic " + btoa(`${g.id}@${sIp}:${g.pw}`);
+        const sHeader = {
+            headers: {"Authorization": sKey},
+        };
+        axios.post(g.url, JSON.parse(JSON.stringify(g.sampleData)), sHeader) // append data
+            .then(appendReuslt => {
+                g.appendData = appendReuslt.data.data;
+
+                axios.get(`${g.url}?q=select * from ${g.tableName} order by time desc limit ${g.sampleData.values.length}`, sHeader) // select data
+                    .then(selectResult => {
+                        g.selectData = selectResult.data.data;
+
+                        drawChart();
+                    })
+                    .catch(err => {
+                        console.error('Select Data Axios Error!');
+                        console.error(err);
+                    });
+            })
+            .catch(err => {
+                console.error('Append Data Axios Error!');
+                console.error(err);
+            });
+    };
+
+    const drawChart = function() {
+        if (g.selectData.Error) {
+            alert('No Data for Chart');
+        } else {
+            g.chartOptions.xaxis.categories = [...new Set(g.selectData.map(data => g.transformDatetime(data.TIME)))];
+            g.chartOptions.series = new Array(g.tagCount).fill(0).map((tag, idx) => ({ // mapping data to Apexchart's
+                name: `s${idx}`,
+                data: g.selectData.filter(data => data.NAME === `s${idx}`).map(data => data.VALUE)
+            }));
+
+            new ApexCharts(document.querySelector('#chart'), g.chartOptions).render(); // draw chart
+        }
+    };
+
+    const ajaxTest = function() {
+        const sIp = '192.168.0.32';
+        const sKey = "Basic " + btoa(`${gId}@${sIp}:${gPw}`);
+        const sHeader = {
+            headers: {"Authorization": sKey},
+        };
+        axios.get(`${g.url}?q=select * from ${g.tableName} limit ${g.sampleData.values.length}`, sHeader)
+            .then(result => {
+                console.log('select result');
+                console.log(result);
+            })
+            .catch(err => {
+                console.error('select result axios error');
+                console.error(err);
+            });
+
+        // axios.post(g.url, JSON.parse(JSON.stringify(g.sampleData)))
+        //     .then(result => {
+        //         console.log('append result');
+        //         console.log(result);
+        //     })
+        //     .catch(err => {
+        //         console.error('append result axios error');
+        //         console.error(err);
+        //     });
+    };
+
+    const init = function() {
+        handleData();
+        // ajaxTest();
+    };
+
+    init(); // main function
+</script>
+</body>
+</html>

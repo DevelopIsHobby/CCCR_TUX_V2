@@ -1,0 +1,13 @@
+# MACHBASE .NET Connector Sample project
+---
+
+### Prerequistic
+MACHBASE .NET Connector DLL is compatible .NET Framework 4.0 or above.
+
+### Instruction
+1. Run a MACHBASE server.
+2. Open the solution.
+3. Link machNetConnector.dll located in $(MACHBASE_HOME)\lib.  
+   * Default library is machNetConnector.dll.
+   * If you are under Linux environment, location is ${MACHBASE_HOME}/lib.
+4. Build and test. 

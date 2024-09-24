@@ -1,0 +1,97 @@
+#!/bin/sh
+
+FILE_COUNT=0
+TABLE_COUNT=0
+
+FILE_NAME=""
+TABLE_NAME=""
+
+print_header()
+{
+    echo "-----------------------------------------------------------------
+     Machbase Data Export Utility.
+     Release Version 8.0.25.official
+     Copyright 2014, MACHBASE Corporation or its subsidiaries.
+     All Rights Reserved.
+-----------------------------------------------------------------"
+}
+print_help()
+{
+    echo "-----------------------------------------------------------------
+     Machbase Data Export Utility.
+     Release Version 8.0.25.official
+     Copyright 2014, MACHBASE Corporation or its subsidiaries.
+     All Rights Reserved.
+-----------------------------------------------------------------
+<< frequently used options are below, in addition, all of machloader options are available to use. >>
+  -P, --port=PORT                       Set port number. (default: 5656)
+  -t, --table=TABLE_NAME                Set table name to get schema.
+  -d, --data=DATA_FILE                  Set name of data file.
+  -l, --log=LOG_FILE                    Set name of log file.
+  -b, --bad=BAD_FILE                    Set name of bad file.
+  -m, --mode=MODE                       Set import mode(append or replace). (default: append)
+  -a, --atime                           Use _arrival_time field.
+  -I, --silent                          Produce less output.
+  -h, --help                            Display help messages.
+  -F, --dateformat=DATEFORMAT           Set dateformat of each column. (default: \"_arrival_time YYYY-MM-DD HH24:MI:SS\")
+
+---------------------------------------------------------------------------
+
+csvexport is based on machloader, and is a tool that makes csv file more convenient with simple options to export data.
+
+1) basic use
+
+Option:
+-t: Set a table name.
+-d: Set a name of data file.
+* It can export with the table name and the file path specified without '-t' and '-d' option
+
+Example:
+csvexport -t table_name -d table_name.csv
+csvexport table_name file_path
+csvexport file_path table_name
+
+2) Add a header
+You can set a field name with this option.
+
+
+Option:
+-H: Set the column names of the table as the names of the fields in the first line of exported csv file.
+
+Example:
+csvexport -t table_name -d table_name.csv -H
+
+" | more
+    exit
+}
+
+check_file_or_table()
+{
+    temp=$1
+    if [ ! -e $temp ]; then
+        TABLE_NAME=$temp
+        TABLE_COUNT=`expr 1 + $TABLE_COUNT`
+    else
+        FILE_NAME=$temp
+        FILE_COUNT=`expr 1 + $FILE_COUNT`
+    fi
+}
+
+if [ $# -lt 2 ]; then
+    print_help
+    exit;
+elif [ $# -eq 2 ]; then
+    check_file_or_table $1
+    check_file_or_table $2
+    if [ $TABLE_COUNT -eq 2 ]; then
+        print_header
+        echo -e "     Error: File does not exist.\n";
+    elif [ $FILE_COUNT -eq 2 ]; then
+        print_header
+        echo -e "     Error: All arguments are exist.\n";
+    else
+        $MACHBASE_HOME/bin/machloader -o -t $TABLE_NAME -d $FILE_NAME
+    fi
+else
+    $MACHBASE_HOME/bin/machloader -o "$@"
+fi

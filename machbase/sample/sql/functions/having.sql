@@ -1,0 +1,51 @@
+--drop table t4;
+
+create table t4(c1 integer, c2 integer, c3 integer);
+
+insert into t4 values (1, 1, 10);
+insert into t4 values (1, 120, 23);
+insert into t4 values (1, 1, 10);
+insert into t4 values (2, 120, 23);
+insert into t4 values (2, 1, 1);
+insert into t4 values (1, 120, 1);
+insert into t4 values (1, 1, 1);
+insert into t4 values (5, 1, 23);
+insert into t4 values (21, 1, 1);
+insert into t4 values (2, 1, 1);
+insert into t4 values (5, 1, 1);
+insert into t4 values (5, 1, 23);
+insert into t4 values (1, 1, 1);
+insert into t4 values (21, 1, 1);
+insert into t4 values (2, 1, 1);
+insert into t4 values (5, 1, 1);
+insert into t4 values (1, 120, 23);
+insert into t4 values (1, 120, 1);
+insert into t4 values (2, 120, 23);
+insert into t4 values (21, 120, 1);
+insert into t4 values (1, 1, 10);
+insert into t4 values (1, 34, 14);
+insert into t4 values (1, 1, 10);
+insert into t4 values (2, 34, 14);
+insert into t4 values (2, 1, 1);
+insert into t4 values (1, 34, 1);
+insert into t4 values (1, 1, 1);
+insert into t4 values (5, 1, 14);
+insert into t4 values (21, 1, 1);
+insert into t4 values (2, 1, 1);
+insert into t4 values (5, 1, 1);
+insert into t4 values (5, 1, 14);
+insert into t4 values (1, 1, 1);
+insert into t4 values (21, 1, 1);
+insert into t4 values (2, 1, 1);
+insert into t4 values (5, 1, 1);
+insert into t4 values (1, 34, 14);
+insert into t4 values (1, 34, 1);
+insert into t4 values (2, 34, 14);
+insert into t4 values (21, 34, 1);
+
+select c1, count(c2), sum(c3) from t4 group by c1;
+select c1, count(c2), sum(c3) from t4 group by c1 having sum(c3) > 50;
+select count(c2) from t4 group by c1 having sum(c3) > 50;
+select c1, count(c2) from t4 group by c1 having sum(c3) > 50 and c1 > 2;
+
+select c1, count(c2) from t4 group by c1 having sum(c3) > 50 and c2 > 2;

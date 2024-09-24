@@ -1,0 +1,43 @@
+#!/bin/sh
+
+FILE_COUNT=0
+TABLE_COUNT=0
+
+FILE_NAME=""
+TABLE_NAME=""
+
+print_header()
+{
+    echo "-----------------------------------------------------------------
+     Machbase Tag Meta Import Utility.
+     Release Version 8.0.25.official
+     Copyright 2014, MACHBASE Corporation or its subsidiaries.
+     All Rights Reserved.
+-----------------------------------------------------------------"
+}
+print_help()
+{
+    echo "-----------------------------------------------------------------
+     Machbase Tag Meta Import Utility.
+     Release Version 8.0.25.official
+     Copyright 2014, MACHBASE Corporation or its subsidiaries.
+     All Rights Reserved.
+-----------------------------------------------------------------
+<< frequently used options are below, in addition, all of machloader options are available to use. >>
+  -P, --port=PORT                       Set port number. (default: 5656)
+  -d, --data=DATA_FILE                  Set name of data file.
+  -l, --log=LOG_FILE                    Set name of log file.
+  -b, --bad=BAD_FILE                    Set name of bad file.
+  -h, --help                            Display help messages.
+---------------------------------------------------------------------------
+
+" | more
+    exit
+}
+
+if [ $# -lt 2 ]; then
+    print_help
+    exit;
+else
+    $MACHBASE_HOME/bin/machloader -i -t _tag_meta -I "$@"
+fi

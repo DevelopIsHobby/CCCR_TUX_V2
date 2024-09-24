@@ -1,0 +1,111 @@
+#!/bin/sh
+
+FILE_COUNT=0
+TABLE_COUNT=0
+
+FILE_NAME=""
+TABLE_NAME=""
+
+print_header()
+{
+    echo "-----------------------------------------------------------------
+     Machbase Data Import Utility.
+     Release Version 8.0.25.official
+     Copyright 2014, MACHBASE Corporation or its subsidiaries.
+     All Rights Reserved.
+-----------------------------------------------------------------"
+}
+print_help()
+{
+    echo "-----------------------------------------------------------------
+     Machbase Data Import Utility.
+     Release Version 8.0.25.official
+     Copyright 2014, MACHBASE Corporation or its subsidiaries.
+     All Rights Reserved.
+-----------------------------------------------------------------
+<< frequently used options are below, in addition, all of machloader options are available to use. >>
+  -P, --port=PORT                       Set port number. (default: 5656)
+  -t, --table=TABLE_NAME                Set table name to get schema.
+  -d, --data=DATA_FILE                  Set name of data file.
+  -l, --log=LOG_FILE                    Set name of log file.
+  -b, --bad=BAD_FILE                    Set name of bad file.
+  -m, --mode=MODE                       Set import mode(append or replace). (default: append)
+  -a, --atime                           Use _arrival_time field.
+  -I, --silent                          Produce less output.
+  -h, --help                            Display help messages.
+  -F, --dateformat=DATEFORMAT           Set dateformat of each column. (default: \"_arrival_time YYYY-MM-DD HH24:MI:SS\")
+
+---------------------------------------------------------------------------
+
+csvimport is based on machloader, and is a tool that makes csv file more convenient with simple options to import data.
+
+1) basic use
+You can set a name of table and a name of data file with these options.
+
+Option:
+-t: Set table name.
+-d: Set name of data file.
+* It can import with the table name and the file path specified without '-t' and '-d' option.
+
+Example:
+csvimport -t table_name -d table_name.csv
+csvimport table_name file_path
+csvimport file_path table_name
+
+
+2) Exclude a header
+You can skip the first line with this option.
+
+Option:
+-H: Set the first line in the csv file as a header which is excluded in importing.
+
+Example:
+csvimport -t table_name -d table_name.csv -H
+
+
+3) Create a table
+In case there is no table existed, a table with the columns can be created automatically with these options.
+
+Option:
+-C: Create a table with the columns in order of C0, C1, ... with data type of varchar(32767).
+-H: Set the first line of csv file as a header with the data type of varchar(32767).
+
+
+Example:
+csvimport -t table_name -d table_name.csv -C
+csvimport -t table_name -d table_name.csv -C -H
+
+" | more
+    exit
+}
+
+check_file_or_table()
+{
+    temp=$1
+    if [ ! -e $temp ]; then
+        TABLE_NAME=$temp
+        TABLE_COUNT=`expr 1 + $TABLE_COUNT`
+    else
+        FILE_NAME=$temp
+        FILE_COUNT=`expr 1 + $FILE_COUNT`
+    fi
+}
+
+if [ $# -lt 2 ]; then
+    print_help
+    exit;
+elif [ $# -eq 2 ]; then
+    check_file_or_table $1
+    check_file_or_table $2
+    if [ $TABLE_COUNT -eq 2 ]; then
+        print_header
+        echo -e "     Error: File does not exist.\n";
+    elif [ $FILE_COUNT -eq 2 ]; then
+        print_header
+        echo -e "     Error: All arguments are exist.\n";
+    else
+        $MACHBASE_HOME/bin/machloader -i -t $TABLE_NAME -d $FILE_NAME
+    fi
+else
+    $MACHBASE_HOME/bin/machloader -i "$@"
+fi
