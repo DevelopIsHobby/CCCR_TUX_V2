@@ -17,6 +17,9 @@ env:
   DOCKER_REGISTRY: docker.io
   IMAGE_REPO: mskim6518/argocd-k8s-v2
   VERSION : 0.0.1
+  DB_HOST: 192.168.56.10  # 외부 MySQL IP 주소
+  DB_USER: weather
+  DB_PASSWORD: ${{ secrets.DB_PASSWORD }}  # 비밀번호를 secrets로 관리
 
 jobs:
   ci_cd_pipeline:
@@ -41,6 +44,11 @@ jobs:
       - name: Build with Gradle
         run: ./gradlew build
         
+      - name: Connect to MySQL Database
+        run: |
+          echo "Connecting to MySQL at $DB_HOST"
+          mysql -u $DB_USER -p$DB_PASSWORD -h $DB_HOST -P 3306 -e "SHOW DATABASES;"
+        
         # 도커허브 로그인
       - name: Log in to Docker hub
         uses: docker/login-action@v1
@@ -56,3 +64,4 @@ jobs:
         run: |
            docker build -f Dockerfile -t ${{ env.DOCKER_REGISTRY }}/${{ env.IMAGE_REPO }}:weather-${{ env.VERSION }} .
            docker push ${{ env.DOCKER_REGISTRY }}/${{ env.IMAGE_REPO }}:weather-${{ env.VERSION }}
+      
