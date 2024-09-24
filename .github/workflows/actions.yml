@@ -67,6 +67,6 @@ jobs:
         # run의 경우 직접 기재한 커맨드 수행 
         # 도커허브에 weather-${{ version }}으로 저장 
         run: |
-           docker build --platform linux/arm64 -f Dockerfile -t ${{ env.DOCKER_REGISTRY }}/${{ env.IMAGE_REPO }}:tuxtalk-${{ env.VERSION }}-${{ github.run_number }} . .
+           docker build --platform linux/arm64 -f Dockerfile -t ${{ env.DOCKER_REGISTRY }}/${{ env.IMAGE_REPO }}:tuxtalk-${{ env.VERSION }}-${{ github.run_number }} .
            docker push ${{ env.DOCKER_REGISTRY }}/${{ env.IMAGE_REPO }}:tuxtalk-${{ env.VERSION }}-${{ github.run_number }}
       
