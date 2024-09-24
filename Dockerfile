@@ -12,7 +12,7 @@ RUN mkdir -p /home/user/upload/default
 
 
 ## 로컬 시스템의 파일을 업로드 디렉토리로 복사 (선택 사항)
-COPY /upload/2024/default/관리자님.jpg /hoem/user/upload/default/관리자님.jpg
+COPY /upload/2024/default/관리자님.jpg /home/user/upload/default/관리자님.jpg
 COPY /upload/2024/default/남석진우뉨.jpg /home/user/upload/default/남석진우님.jpg
 COPY /upload/2024/default/민정님.jpg /home/user/upload/default/민정님.jpg
 COPY /upload/2024/default/카카오톡_프사.jpg /home/user/upload/default/카카오톡_프사.jpg
