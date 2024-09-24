@@ -12,7 +12,7 @@ COPY build/libs/chattest-0.0.1-SNAPSHOT.jar /app/tuxtalk.jar
 
 # 로컬 시스템의 파일을 업로드 디렉토리로 복사 (선택 사항)
 COPY /upload/2024/default/관리자님.jpg /app/upload/관리자님.jpg
-COPY /upload/2024/default/남석진우님.jpg /app/upload/남석진우님.jpg
+COPY /upload/2024/default/남석진우뉨.jpg /app/upload/남석진우님.jpg
 COPY /upload/2024/default/민정님.jpg /app/upload/민정님.jpg
 COPY /upload/2024/default/카카오톡_프사.jpg /app/upload/카카오톡_프사.jpg
 
