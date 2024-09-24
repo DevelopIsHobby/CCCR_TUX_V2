@@ -49,11 +49,16 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_PASSWORD }}
 
+      # Buildx 설치 및 활성화
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+
+      # 빌드 및 푸시
       - name: 서버 이미지 빌드 및 푸시
         id: build_and_push_server
         run: |
-          # Build the Docker image
-          docker buildx build --platform linux/amd64,linux/arm64 -f Dockerfile -t ${{ env.DOCKER_REGISTRY }}/${{ env.IMAGE_REPO }}:tuxtalk-${{ env.VERSION }}-${{ github.run_number }} .
-          # Push the Docker image
-          docker push ${{ env.DOCKER_REGISTRY }}/${{ env.IMAGE_REPO }}:tuxtalk-${{ env.VERSION }}-${{ github.run_number }}
+          # Build the Docker image for multiple platforms
+          docker buildx build --platform linux/amd64,linux/arm64 -f Dockerfile \
+            -t ${{ env.DOCKER_REGISTRY }}/${{ env.IMAGE_REPO }}:tuxtalk-${{ env.VERSION }}-${{ github.run_number }} \
+            --push .
 
