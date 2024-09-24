@@ -23,31 +23,31 @@ public class DataInitializer implements CommandLineRunner {
                 .email("admin@com.chattest")
                 .name("CCCR관리자")
                 .password(passwordEncoder.encode("1234"))
-                .profilePictureUrl("2024/default/관리자님.jpg")
+                .profilePictureUrl("/관리자님.jpg")
                 .build();
         User user1 = User.builder()
                 .email("user1@com.chattest")
                 .name("김민석")
                 .password(passwordEncoder.encode("1234"))
-                .profilePictureUrl("2024/default/카카오톡_프사.jpg")
+                .profilePictureUrl("/카카오톡_프사.jpg")
                 .build();
         User user2 = User.builder()
                 .email("user2@com.chattest")
                 .name("최민정")
                 .password(passwordEncoder.encode("1234"))
-                .profilePictureUrl("2024/default/민정님.jpg")
+                .profilePictureUrl("/민정님.jpg")
                 .build();
         User user3 = User.builder()
                 .email("user3@com.chattest")
                 .name("윤남석")
                 .password(passwordEncoder.encode("1234"))
-                .profilePictureUrl("2024/default/남석진우뉨.jpg")
+                .profilePictureUrl("/남석진우뉨.jpg")
                 .build();
         User user4 = User.builder()
                 .email("user4@com.chattest")
                 .name("이진우")
                 .password(passwordEncoder.encode("1234"))
-                .profilePictureUrl("2024/default/남석진우뉨.jpg")
+                .profilePictureUrl("/남석진우뉨.jpg")
                 .build();
 
         user.addUserRole(UserRole.USER);
