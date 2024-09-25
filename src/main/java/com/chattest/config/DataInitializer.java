@@ -41,13 +41,13 @@ public class DataInitializer implements CommandLineRunner {
                 .email("user3@com.chattest")
                 .name("윤남석")
                 .password(passwordEncoder.encode("1234"))
-                .profilePictureUrl("default/남석진우뉨.jpg")
+                .profilePictureUrl("default/남석진우님.jpg")
                 .build();
         User user4 = User.builder()
                 .email("user4@com.chattest")
                 .name("이진우")
                 .password(passwordEncoder.encode("1234"))
-                .profilePictureUrl("default/남석진우뉨.jpg")
+                .profilePictureUrl("default/남석진우님.jpg")
                 .build();
 
         user.addUserRole(UserRole.USER);
