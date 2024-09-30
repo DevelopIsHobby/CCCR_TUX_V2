@@ -20,7 +20,7 @@
 ## 발표 내용
 
 ![1](https://github.com/user-attachments/assets/ba41443a-c49a-41b9-8b45-beb0f0ae9c20)
-![2](https://github.com/user-attachments/assets/8a3473e7-8d90-4ab5-80c7-7d22bfdc72e2)
+![2](https://github.com/user-attachments/assets/515f1f6a-f84c-48b3-8312-76a7a8c1e0e0)
 ![3](https://github.com/user-attachments/assets/2b5fc7a8-207d-485f-bc40-b433f56aca3e)
 ![4](https://github.com/user-attachments/assets/0c8d81df-dcd5-4345-aa58-a2c568578338)
 ![5](https://github.com/user-attachments/assets/bd5d46e8-07eb-4780-bf8c-d218cedf646e)
